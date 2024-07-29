@@ -44,31 +44,24 @@ task createZip(type: Zip) {
     destinationDirectory = file('build/distributions')
 }
 
-// Task push build folder to GitHub
 task pushToGitHub(type: Exec) {
-    workingDir 'build'
-    // Initialize git
-    commandLine 'git', 'init'
-    exec()
-    
-    // Add all files
-    commandLine 'git', 'add', '.'
-    exec()
-
-    // Commit the changes
-    commandLine 'git', 'commit', '-m', '"Automated deployment"'
-    exec()
-
-    // // Set the branch name
-    // commandLine 'git', 'branch', '-m', 'main'
-    // exec()
-
-    // Add the remote repository
-    commandLine 'git', 'remote', 'add', 'origin',
-    'https://github.com/CTohQH/Gradle.git'
-    exec()
-
-    // Push to the remote repository
-    commandLine 'git', 'push', '-u', 'origin', 'main'
-    exec()
+workingDir 'build'
+// Initialize git
+commandLine 'git', 'init'
+exec()
+// Add all files
+commandLine 'git', 'add', '.'
+exec()
+// Commit the changes
+commandLine 'git', 'commit', '-m', 'Automated deployment'
+exec()
+// Set the branch name
+commandLine 'git', 'branch', '-M', 'main'
+exec()
+// Add the remote repository
+commandLine 'git', 'remote', 'add', 'origin','https://github.com/CTohQH/Gradle.git'
+exec()
+// Push to the remote repository
+commandLine 'git', 'push', '-u', 'origin', 'main'
+exec()
 }
